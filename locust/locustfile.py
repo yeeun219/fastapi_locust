@@ -22,9 +22,10 @@ class WinePredictionUser(HttpUser):
 
     @task(10)
     def prediction(self):
-        test_date =  random_date("2022-01-01", "2022-12-31", random.random())
+        test_date =  random_date("2022-11-21", "2022-12-31", random.random())
         query = {
             "days": test_date,
         }
-        self.client.post("/predict", json=query)
-
+        response=self.client.post("/forecast_future",json=query)
+        print("days",test_date)
+        print("result",response.json())
