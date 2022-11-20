@@ -4,6 +4,7 @@ from datetime import datetime
 from fastapi import FastAPI
 import uvicorn
 
+
 app = FastAPI()
 
 
@@ -11,6 +12,10 @@ app = FastAPI()
 async def root():
     return {"message": "Head to endpoint /forecast_timeseries to fetch forecast data or to /docs to see documentation"}
 
+
+@app.get("/healthcheck")
+def healthcheck():
+    return {"status": "ok"}
 
 @app.post("/forecast_future")
 async def return_forecast(days: str) :
